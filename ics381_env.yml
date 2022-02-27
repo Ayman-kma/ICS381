@@ -1,0 +1,15 @@
+name: ics381_env
+channels:
+- auto
+- conda-forge
+- anaconda
+- defaults
+dependencies:
+- python=3.9
+- numpy
+- pandas
+- seaborn
+- matplotlib
+- seaborn
+- scikit-learn
+- pathlib
