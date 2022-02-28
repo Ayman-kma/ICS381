@@ -139,11 +139,8 @@ class GridProblem(Problem):
                 # x1, y1 = self.food_coords[node.state[1].index(False)]
                 # distance = 100000000000000000
                 # for tub in enumerate(self.food_coords):
-                #     print("line 135")
                 #     if len(node.state[1]) > counter:
-                #         print("line 137")
                 #         if node.state[1][counter] == False:
-                #             print("line 139")
                 #             x1, y1 = tub[1]
                 #             manhattan = abs(x1 - x2) + abs(y1 - y2)
                 #             if distance > manhattan:

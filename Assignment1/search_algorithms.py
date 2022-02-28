@@ -120,3 +120,60 @@ def astar_search(problem, h, treelike=False):
         return best_first_search_treelike(problem, f=lambda node: h(node) + node.path_cost)
     else:
         return best_first_search(problem, f=lambda node:  h(node) + node.path_cost)
+def visualize_route_problem_solution(problem, goal_node, file_name):
+    states = get_path_states(goal_node)
+    x_coords= []
+    y_coords= []
+    for x,y in problem.map_coords.values():
+        x_coords.append(x)
+        y_coords.append(y)
+    plt.scatter(x_coords,y_coords, marker = 's',color ='blue')
+    IandG = [problem.map_coords[problem.initial_state],problem.map_coords[goal_node.state]]
+    x_coords= [IandG[0][0],IandG[1][0]]
+    y_coords= [IandG[0][1],IandG[1][1]]
+    plt.scatter(x_coords,y_coords, marker = 's', color=["red","green"])
+    for state in problem.map_coords.keys():
+        for action in problem.actions(state):
+            x = problem.map_coords[action][0] - problem.map_coords[state][0]
+            y = problem.map_coords[action][1] - problem.map_coords[state][1]
+            plt.arrow(problem.map_coords[state][0],problem.map_coords[state][1], x, y)
+    
+    for i in range(len(states)-1):
+        x = problem.map_coords[states[i+1]][0] - problem.map_coords[states[i]][0]
+        y = problem.map_coords[states[i+1]][1] - problem.map_coords[states[i]][1]
+        plt.arrow(problem.map_coords[states[i]][0],problem.map_coords[states[i]][1], x, y,color ='magenta')
+
+    plt.savefig(file_name)
+
+    plt.show()
+    print("Show is not cool")
+    plt.close()
+
+
+def visualize_grid_problem_solution(problem, goal_node, file_name):
+    states = get_path_states(goal_node)
+    wall = problem.wall_coords
+    food = problem.food_coords
+    plt.scatter(problem.initial_state[0][0],problem.initial_state[0][1], marker = 's', color ='green' )
+    x_coords= []
+    y_coords= []
+    for pair in wall:
+        x_coords.append(pair[0])
+        y_coords.append(pair[1])
+    plt.scatter(x_coords,y_coords, marker = 's', color ='black' )
+    x_coords= []
+    y_coords= []
+    for pair in food:
+        x_coords.append(pair[0])
+        y_coords.append(pair[1])
+    plt.scatter(x_coords,y_coords , marker = 'o', c ='red' )
+    for i in range(len(states)-1):
+        x = states[i+1][0][0] - states[i][0][0]
+        y = states[i+1][0][1] - states[i][0][1]
+        plt.arrow(states[i][0][0],states[i][0][1], x, y,color ='magenta')
+
+    plt.savefig(file_name)
+    print("Show is cool")
+    plt.show()
+    print("Show is not cool")
+    plt.close() 
