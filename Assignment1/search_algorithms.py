@@ -146,7 +146,6 @@ def visualize_route_problem_solution(problem, goal_node, file_name):
     plt.savefig(file_name)
 
     plt.show()
-    print("Show is not cool")
     plt.close()
 
 
@@ -173,7 +172,5 @@ def visualize_grid_problem_solution(problem, goal_node, file_name):
         plt.arrow(states[i][0][0],states[i][0][1], x, y,color ='magenta')
 
     plt.savefig(file_name)
-    print("Show is cool")
     plt.show()
-    print("Show is not cool")
     plt.close() 
